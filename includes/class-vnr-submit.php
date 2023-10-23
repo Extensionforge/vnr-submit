@@ -93,8 +93,8 @@ function subscribe($email_address, $newsletter_abbreviations, $opt_in_process_id
 
 		global $wpdb;
 
-		$API_ENDPOINT_COMPUTERWISSEN = getenv(' NSS_API_ENDPOINT_COMPUTERWISSEN');
-		$API_PASSWORD = getenv(' NSS_API_COMPUTERWISSEN_PASSWORD');
+		$API_ENDPOINT_COMPUTERWISSEN = getenv('NSS_API_ENDPOINT_COMPUTERWISSEN');
+		$API_PASSWORD = getenv('NSS_API_COMPUTERWISSEN_PASSWORD');
 
 		$testo = $wpdb->insert("wp_tests", array('task' => 'check_endpoint_var', 'value' => $API_ENDPOINT_COMPUTERWISSEN), array('%s') );
 		$testo = $wpdb->insert("wp_tests", array('task' => 'check_endpoint_password', 'value' => $API_PASSWORD), array('%s') );
