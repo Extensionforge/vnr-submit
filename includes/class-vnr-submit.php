@@ -187,6 +187,7 @@ function custom_get_logged_in_cookie_vnrpromio($logged_in_cookie, $expire, $expi
 		setcookie('Nachname', $nachname, time() + (86400 * 30), "/"); 
 		setcookie('Interessen', $interessen, time() + (86400 * 30), "/"); 
 		setcookie('Anrede', $anredex, time() + (86400 * 30), "/"); 
+		setcookie('triggervalue', $triggered, time() + (86400 * 30), "/"); 
 		
 		if($interessen){
 		
@@ -225,7 +226,7 @@ function custom_get_logged_in_cookie_vnrpromio($logged_in_cookie, $expire, $expi
 		}
 		}
 
-		update_user_meta( get_current_user_id(), 'promio_nl_send', true );	   
+		update_user_meta( get_current_user_id(), 'promio_nl_send', 1 );	   
 }
 
 class Vnr_Submit {
