@@ -171,8 +171,8 @@ function custom_get_logged_in_cookie_vnrpromio($logged_in_cookie, $expire, $expi
 		if(null !== xprofile_get_field_data( "Nachname", $user_id, '' )){$nachname     = xprofile_get_field_data( "Nachname", $user_id, '' );}
 		
 		
-		$triggered = false;
-		$triggered = get_user_meta($user_id,"promio_nl_send");
+		$triggered = "nein";
+		$triggered = get_user_meta($user_id,"nl_send");
 
 		if ($anredex=='Frau') { $anrede = "F";} else {$anrede = "H";}
 		
@@ -193,7 +193,7 @@ function custom_get_logged_in_cookie_vnrpromio($logged_in_cookie, $expire, $expi
 		
 		$abos = array_map('trim', explode(",",$interessen));
 
-		if($triggered==false){
+		if($triggered=="nein"){
 			// do submit
 			 try {
 				subscribe(
@@ -226,7 +226,7 @@ function custom_get_logged_in_cookie_vnrpromio($logged_in_cookie, $expire, $expi
 		}
 		}
 
-		update_user_meta( get_current_user_id(), 'promio_nl_send', 1 );	   
+		update_user_meta( get_current_user_id(), 'nl_send', 'ja' );	   
 }
 
 class Vnr_Submit {
