@@ -97,7 +97,7 @@ function subscribe($email_address, $newsletter_abbreviations, $opt_in_process_id
 		$API_PASSWORD = getenv('NSS_API_COMPUTERWISSEN_PASSWORD');
 
 		$testo = $wpdb->insert("wp_tests", array('task' => 'check_endpoint_var', 'value' => $API_ENDPOINT_COMPUTERWISSEN), array('%s') );
-		$testo = $wpdb->insert("wp_tests", array('task' => 'check_endpoint_password', 'value' => $API_PASSWORD), array('%s') );
+		//$testo = $wpdb->insert("wp_tests", array('task' => 'check_endpoint_password', 'value' => $API_PASSWORD), array('%s') );
 
 		$request = new stdClass();
 		$request->Method = $method;
@@ -181,19 +181,17 @@ function custom_get_logged_in_cookie_vnrpromio($logged_in_cookie, $expire, $expi
 		//echo $anrede." ".$vorname." ".$nachname." ".$email;
 		//var_dump($interessen);
 		$interessen = "CWC, ".$interessenx;
+
+
+		setcookie('Vorname', $vorname, time() + (86400 * 30), "/"); 
+		setcookie('Nachname', $nachname, time() + (86400 * 30), "/"); 
+		setcookie('Interessen', $interessen, time() + (86400 * 30), "/"); 
+		setcookie('Anrede', $anredex, time() + (86400 * 30), "/"); 
+		
 		if($interessen){
 		
 		$abos = array_map('trim', explode(",",$interessen));
 
-		//delete to activate
-		$triggered=false;
-		//$testo = $wpdb->insert("tester", array('text' => json_encode($triggered)), array('%s') );
-		//$testo = $wpdb->insert("tester", array('text' => json_encode($emailuser)), array('%s') );
-		//$testo = $wpdb->insert("tester", array('text' => json_encode($interessen)), array('%s') );
-		//$testo = $wpdb->insert("tester", array('text' => json_encode($vorname)), array('%s') );
-		//$testo = $wpdb->insert("tester", array('text' => json_encode($nachname)), array('%s') );
-		//$testo = $wpdb->insert("tester", array('text' => json_encode($anrede)), array('%s') );
-		
 		if($triggered==false){
 			// do submit
 			 try {
@@ -216,13 +214,13 @@ function custom_get_logged_in_cookie_vnrpromio($logged_in_cookie, $expire, $expi
 					'immediateConfirmation' => 'PCemupZnsudHNWDeHd3CU2TbPVQWHpF3'
 				]))
 					);
-	setcookie('NSS_API_ERROR', 'OK!', time() + (86400 * 30), "/"); 
+	setcookie('SUBMIT_API_ERROR', 'OK!', time() + (86400 * 30), "/"); 
 				} catch (Exception $exception) {
 					//echo 'Fehler: API!<br />';
 					//$testo = $wpdb->insert("tester", array('text' => json_encode($exception->getMessage())), array('%s') );
 					//print($exception->getMessage());
 			
-			setcookie('NSS_API_ERROR', $exception->getMessage(), time() + (86400 * 30), "/"); 
+			setcookie('SUBMIT_API_ERROR', $exception->getMessage(), time() + (86400 * 30), "/"); 
 				}          
 		}
 		}
